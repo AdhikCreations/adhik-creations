@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact - Adhik Creations</title>
+    <link rel="stylesheet" href="assets/css/styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Google+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="logo">
+                <img src="assets/images/logo.png" alt="Adhik Creations Logo">
+                <span>Adhik Creations</span>
+            </div>
+            <nav id="main-nav">
+                <button class="menu-toggle" aria-label="Toggle navigation">
+                    <span class="material-symbols-outlined">
+                        menu
+                    </span>
+                </button>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="services.html">Services</a></li>
+                    <li><a href="portfolio.html">Portfolio</a></li>
+                    <li><a href="testimonials.html">Testimonials</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                    <li><a href="about.html">About</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section class="contact">
+            <div class="contact-form">
+                <h2>Contact Us</h2>
+                <form>
+                    <label for="name">Name:</label>
+                    <input type="text" id="name" name="name" required>
+
+                    <label for="email">Email:</label>
+                    <input type="email" id="email" name="email" required>
+
+                    <label for="phone">Phone:</label>
+                    <input type="tel" id="phone" name="phone">
+
+                    <label for="message">Message:</label>
+                    <textarea id="message" name="message" rows="5" required></textarea>
+
+                    <button type="submit">Send</button>
+                </form>
+            </div>
+            <div class="contact-info">
+                <h2>Contact Information</h2>
+                <p>Phone: <a href="tel:+15551234567">+1 (555) 123-4567</a></p>
+                <p>Email: <a href="mailto:info@example.com">info@example.com</a></p>
+                <p>Address: 123 Main St, Anytown, NC</p>
+                <p>
+                    <a href="https://www.instagram.com/adhik_creations/" target="_blank">WhatsApp</a> |
+                    <a href="https://www.instagram.com/adhik_creations/" target="_blank">Email</a> |
+                    <a href="https://www.instagram.com/adhik_creations/" target="_blank">Facebook</a> |
+                    <a href="https://www.instagram.com/adhik_creations/" target="_blank">Instagram</a>
+                </p>
+            </div>
+        </section>
+    </main>
+
+   <footer>
+        <div class="container footer-content">
+            <div class="copyright">
+                <p>&copy; 2024 Adhik Creations. All rights reserved.</p>
+            </div>
+            <div class="social-icons">
+                <a href="https://www.instagram.com/adhik_creations/" aria-label="Facebook" target="_blank"><i class="fab fa-facebook-f"></i></a>
+                <a href="https://www.instagram.com/adhik_creations/" aria-label="Instagram" target="_blank"><i class="fab fa-instagram"></i></a>
+                <a href="https://www.instagram.com/adhik_creations/" aria-label="WhatsApp" target="_blank"><i class="fab fa-whatsapp"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const menuToggle = document.querySelector('.menu-toggle');
+            const nav = document.querySelector('#main-nav');
+
+            menuToggle.addEventListener('click', function() {
+                nav.classList.toggle('open');
+            });
+        });
+    </script>
+</body>
+</html>

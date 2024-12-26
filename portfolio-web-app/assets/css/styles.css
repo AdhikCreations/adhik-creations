@@ -1,0 +1,824 @@
+/* Variables */
+:root {
+    --primary: #6200ee;
+    --primary-variant: #3700b3;
+    --secondary: #03dac6;
+    --background: #fafafa;
+    --surface: #ffffff;
+    --error: #b00020;
+    --on-primary: #ffffff;
+    --on-secondary: #000000;
+    --on-background: #000000;
+    --on-surface: #000000;
+    --on-error: #ffffff;
+    
+    /* Elevation and Spacing */
+    --elevation-1: 0 2px 4px rgba(0,0,0,0.1);
+    --elevation-2: 0 4px 8px rgba(0,0,0,0.12);
+    --container-padding: clamp(16px, 5vw, 24px);
+    --section-spacing: clamp(2rem, 5vw, 4rem);
+    
+    /* Typography */
+    --fs-sm: clamp(0.8rem, 0.17vw + 0.76rem, 0.89rem);
+    --fs-base: clamp(1rem, 0.34vw + 0.91rem, 1.19rem);
+    --fs-md: clamp(1.25rem, 0.61vw + 1.1rem, 1.58rem);
+    --fs-lg: clamp(1.56rem, 1vw + 1.31rem, 2.11rem);
+    --fs-xl: clamp(1.95rem, 1.56vw + 1.56rem, 2.81rem);
+    --fs-xxl: clamp(2.44rem, 2.38vw + 1.85rem, 3.75rem);
+}
+
+/* Base Styles */
+body {
+    font-family: 'Google Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: var(--background);
+    color: var(--on-background);
+    line-height: 1.6;
+    font-size: var(--fs-base);
+}
+
+/* Utility Classes */
+.container {
+    width: min(100% - 2rem, 1200px);
+    margin-inline: auto;
+    padding-inline: var(--container-padding);
+}
+
+/* Typography */
+h1, h2, h3, h4, h5, h6 {
+    font-weight: 600;
+    margin: 0;
+}
+
+h1 { font-size: var(--fs-xxl); }
+h2 { font-size: var(--fs-xl); }
+h3 { font-size: var(--fs-lg); }
+
+/* Common Components */
+.card-base {
+    background: var(--surface);
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: var(--elevation-1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card-base:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--elevation-2);
+}
+
+/* Buttons */
+.btn-base {
+    display: inline-block;
+    padding: 0.75rem 1.5rem;
+    border-radius: 4px;
+    font-weight: 500;
+    font-size: 1rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    transition: all 0.3s ease;
+}
+
+.btn-primary {
+    composes: btn-base;
+    background: var(--primary);
+    color: var(--on-primary);
+}
+
+.btn-secondary {
+    composes: btn-base;
+    background: var(--secondary);
+    color: var(--on-secondary);
+}
+
+/* Grid Layouts */
+.grid-auto-fit {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr));
+    gap: clamp(1rem, 3vw, 2rem);
+}
+
+/* Header & Navigation */
+header {
+    background-color: var(--primary);
+    box-shadow: var(--elevation-1);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    padding: 1rem 0;
+}
+
+header .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+    padding: 0.5rem var(--container-padding);
+}
+
+nav#main-nav {
+    flex-grow: 1;
+    display: flex;
+    justify-content: flex-end;
+}
+
+nav#main-nav ul {
+    display: flex;
+    gap: 1.5rem;
+    align-items: center;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+nav#main-nav a {
+    color: var(--on-primary);
+    font-weight: 500;
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    transition: background-color 0.3s ease;
+    text-transform: uppercase;
+    font-size: 0.9rem;
+    letter-spacing: 0.5px;
+    text-decoration: none;  /* Add this line */
+}
+
+nav#main-nav a:hover,
+nav#main-nav a.active {
+    background-color: var(--primary-variant);
+    color: var(--on-primary);
+}
+
+/* Ensure consistent menu toggle behavior */
+.menu-toggle {
+    display: none;
+    background: none;
+    border: none;
+    color: var(--on-primary);
+    cursor: pointer;
+    padding: 0.5rem;
+}
+
+.menu-toggle .material-symbols-outlined {
+    font-size: 24px;
+}
+
+@media (max-width: 800px) {
+    .menu-toggle {
+        display: block;
+    }
+
+    nav#main-nav ul {
+        display: none;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        background-color: var(--surface);
+        flex-direction: column;
+        padding: 1rem;
+    }
+
+    nav#main-nav.open ul {
+        display: flex;
+    }
+
+    nav#main-nav ul li {
+        width: 100%;
+    }
+
+    nav#main-nav ul a {
+        display: block;
+        padding: 0.75rem 2rem;
+        width: 100%;
+    }
+}
+
+/* Hero Section */
+.hero {
+    background-image: url('../images/banner.jpg');
+    background-size: cover;
+    background-position: center;
+    text-align: center;
+    padding: 10rem 0;
+    color: #fff;
+    position: relative;
+    z-index: 1;
+}
+
+.hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* Lighter overlay */
+    z-index: -1;
+}
+
+.hero h1 {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
+}
+
+.hero p {
+    font-size: 1.25rem;
+    margin-bottom: 2rem;
+}
+
+.hero .container {
+    max-width: 800px; /* Limit container width */
+}
+
+/* Footer */
+footer {
+    background-color: var(--primary);
+    color: var(--on-primary);
+    padding: 2rem 0;
+    margin-top: 3rem;
+}
+
+.footer-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+.social-icons a {
+    color: var(--on-primary);
+    margin: 0 12px;
+    font-size: 1.25rem;
+    transition: opacity 0.3s ease;
+}
+
+.social-icons a:hover {
+    opacity: 0.8;
+}
+
+/* Services Section */
+.section-title {
+    font-size: 2rem;
+    text-align: center;
+    margin: 2rem 0;
+    color: var(--on-background);
+}
+
+.service-card h3 {
+    font-size: 1.25rem;
+    font-weight: 500;
+    padding: 1rem 1rem 0.5rem;
+}
+
+.service-card p {
+    font-size: 1rem;
+    line-height: 1.6;
+    color: var(--on-surface);
+    opacity: 0.87;
+    margin-bottom: 1.5rem;
+}
+
+.service-card a.material-button {
+    display: inline-block;
+    margin: 0 1rem 1rem;
+    padding: 0.5rem 1rem;
+    background: var(--primary);
+    color: var(--on-primary);
+    border-radius: 4px;
+    text-transform: uppercase;
+    font-weight: 500;
+    font-size: 0.875rem;
+    letter-spacing: 0.5px;
+    transition: background-color 0.3s ease;
+}
+
+.service-card a.material-button:hover {
+    background: var(--primary-variant);
+}
+
+.btn {
+    display: inline-block;
+    background-color: var(--accent-color); /* Updated button color */
+    color: #fff;
+    padding: 14px 28px; /* Increased padding */
+    border-radius: 8px; /* More rounded corners */
+    font-weight: 600;
+    box-shadow: 0 2px 4px var(--elevation-color);
+    transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease; /* Added box-shadow transition */
+}
+
+.btn:hover {
+    background-color: var(--accent-color);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px var(--elevation-color); /* Increased shadow on hover */
+}
+
+/* Navigation */
+nav .menu-toggle {
+    display: none;
+}
+
+/* Services Grid */
+.services-grid,
+.portfolio-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr));
+    gap: clamp(1rem, 3vw, 2rem);
+    padding: var(--section-spacing) 0;
+}
+
+.service-card,
+.portfolio-item {
+    background: var(--surface);
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: var(--elevation-1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.service-card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--elevation-2);
+}
+
+.service-card img,
+.portfolio-item img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    aspect-ratio: 16/9;
+    height: auto;
+}
+
+.service-card h3 {
+    padding: 16px 16px 8px;
+    margin: 0;
+    color: var(--on-surface);
+    font-size: 1.25rem;
+}
+
+.service-card p {
+    padding: 0 16px;
+    color: var(--on-surface);
+    opacity: 0.87;
+    margin-bottom: 16px;
+}
+
+.service-card a {
+    display: inline-block;
+    margin: 0 16px 16px;
+    padding: 8px 16px;
+    background: var(--primary);
+    color: var(--on-primary);
+    border-radius: 4px;
+    text-transform: uppercase;
+    font-weight: 500;
+    font-size: 0.875rem;
+    letter-spacing: 0.5px;
+}
+
+/* Buttons */
+.btn, .btn-primary, .btn-secondary, .material-button {
+    display: inline-block;
+    padding: 0.75rem 1.5rem;
+    border-radius: 4px;
+    font-weight: 500;
+    font-size: 1rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    transition: all 0.3s ease;
+}
+
+.btn-primary, .material-button {
+    background: var(--primary);
+    color: var(--on-primary);
+}
+
+.btn-secondary {
+    background: var(--secondary);
+    color: var(--on-secondary);
+}
+
+.btn:hover, .btn-primary:hover, .btn-secondary:hover, .material-button:hover {
+    background: var(--primary-variant);
+    color: var(--on-primary);
+    transform: translateY(-2px);
+    box-shadow: var(--elevation-2);
+}
+
+.hero-buttons {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+}
+
+/* Error Message Styles */
+.error-message {
+    text-align: center;
+    padding: 2rem;
+    background: var(--surface);
+    border-radius: 8px;
+    box-shadow: var(--elevation-1);
+    color: var(--error);
+    grid-column: 1 / -1;
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 800px) { /* Adjusted breakpoint */
+    .container {
+        padding: 0 16px; /* Adjusted padding */
+    }
+
+    header {
+        padding: 0.8rem 0; /* Adjusted padding */
+    }
+
+    .logo img {
+        height: 2rem;
+    }
+
+    .logo span {
+        font-size: var(--fs-base);
+    }
+
+    nav ul {
+        position: absolute; /* Position the menu */
+        top: 64px; /* Adjust top position */
+        left: 0;
+        width: 100%;
+        background-color: var(--primary);
+        flex-direction: column;
+        align-items: flex-start; /* Align items to the start */
+        padding: 1rem;
+        display: none;
+        z-index: 100;
+        box-shadow: 0 2px 4px var(--elevation-color); /* Add shadow */
+    }
+
+    nav.open ul {
+        display: flex;
+    }
+
+    nav li {
+        margin: 0.5rem 0;
+        width: 100%; /* Full width */
+    }
+
+    nav a {
+        color: var(--on-primary);
+        padding: 0.5rem;
+        display: block; /* Full width */
+    }
+
+    nav a:hover {
+        background-color: var(--primary-variant);
+    }
+
+    nav .menu-toggle {
+        display: block;
+        background: none;
+        border: none;
+        cursor: pointer;
+        padding: 0;
+        margin-left: auto; /* Push to the right */
+    }
+
+    nav .menu-toggle i {
+        color: #fff;
+        font-size: 1.6rem; /* Slightly larger icon */
+    }
+
+    .hero {
+        padding: 6rem 0; /* Adjusted padding */
+    }
+
+    .hero h1 {
+        font-size: 2rem;
+    }
+
+    .hero p {
+        font-size: 1.1rem;
+    }
+
+    .footer-content {
+        flex-direction: column; /* Stack content vertically */
+    }
+
+    .social-icons {
+        margin-top: 1.5rem; /* Increased margin */
+    }
+
+    .section-title {
+        font-size: 1.75rem;
+    }
+}
+
+/* Responsive Design Improvements */
+@media (max-width: 768px) {
+    nav ul {
+        background-color: var(--surface);
+        box-shadow: var(--elevation-2);
+        padding: 1rem;
+    }
+
+    nav ul li {
+        width: 100%;
+    }
+
+    nav ul li a {
+        padding: 0.75rem 1rem;
+        display: block;
+        text-align: left;
+        color: var(--on-surface);
+    }
+
+    .hero {
+        min-height: 60vh;
+        display: grid;
+        place-items: center;
+    }
+
+    .hero-buttons {
+        flex-direction: column;
+        gap: 1rem;
+        width: 100%;
+        max-width: 300px;
+        margin: 0 auto;
+    }
+}
+
+/* Tablet Specific Adjustments */
+@media (min-width: 769px) and (max-width: 1024px) {
+    .grid-auto-fit {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .hero {
+        min-height: 50vh;
+    }
+}
+
+/* Larger Screen Optimizations */
+@media (min-width: 1025px) {
+    .grid-auto-fit {
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+    .hero {
+        min-height: 70vh;
+    }
+}
+
+/* Common Responsive Elements */
+img {
+    max-width: 100%;
+    height: auto;
+}
+
+/* Touch-friendly Interactions */
+@media (hover: none) {
+    .btn-base,
+    .card-base a {
+        padding: min(16px, 4vw);
+    }
+}
+
+/* High DPI Screen Optimizations */
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+    .hero::before {
+        background-color: rgba(0, 0, 0, 0.6);
+    }
+}
+
+/* Print Styles */
+@media print {
+    .hero {
+        background: none;
+        color: black;
+    }
+
+    .nav,
+    .footer {
+        display: none;
+    }
+}
+
+/* Contact Form Responsiveness */
+.contact {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 400px), 1fr));
+    gap: 2rem;
+    padding: var(--section-spacing);
+}
+
+.contact-form form {
+    display: grid;
+    gap: 1rem;
+}
+
+/* Logo and Header Adjustments */
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.logo img {
+    height: 2.5rem;
+    width: auto;
+    object-fit: contain;
+}
+
+.logo span {
+    font-size: var(--fs-md);
+    color: var(--on-primary);
+    font-weight: 500;
+}
+
+/* Add these new styles */
+.centered-logo {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 2;
+    width: 200px;  /* Adjust size as needed */
+    height: auto;
+    opacity: 0.9;
+}
+
+/* Portfolio Carousel Styles */
+.carousel {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 16/9;
+    overflow: hidden;
+    border-radius: 8px;
+    background: var(--surface);
+}
+
+.carousel-inner {
+    width: 100%;
+    height: 100%;
+}
+
+.carousel-inner img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: opacity 0.3s ease;
+}
+
+.carousel-control {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(0, 0, 0, 0.5);
+    color: white;
+    border: none;
+    padding: 1rem 0.5rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.carousel-control:hover {
+    background: rgba(0, 0, 0, 0.7);
+}
+
+.carousel-control.prev {
+    left: 0;
+    border-radius: 0 4px 4px 0;
+}
+
+.carousel-control.next {
+    right: 0;
+    border-radius: 4px 0 0 4px;
+}
+
+.carousel-indicators {
+    position: absolute;
+    bottom: 1rem;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 0.5rem;
+}
+
+.indicator {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    border: none;
+    background: rgba(255, 255, 255, 0.5);
+    cursor: pointer;
+    padding: 0;
+}
+
+.indicator.active {
+    background: white;
+}
+
+.portfolio-item h3 {
+    text-align: center;
+    margin: 1rem 0;
+    color: var(--on-surface);
+}
+
+/* Modal and Full-Screen Carousel Styles */
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.9);
+    z-index: 1000;
+    overflow: hidden;
+    padding: 20px;
+    box-sizing: border-box; /* Add this to include padding in width calculation */
+}
+
+.modal.open {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-content {
+    width: 90%;
+    height: 90%;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    max-width: 1400px; /* Add max-width to ensure content doesn't stretch too wide */
+    margin: 0 auto;
+    padding-top: 40px; /* Add padding to accommodate close button */
+}
+
+.modal-close {
+    position: absolute;
+    top: 0; /* Position at the top of modal-content */
+    right: 0; /* Align with the right edge of content */
+    color: #f1f1f1;
+    font-size: 40px;
+    font-weight: bold;
+    cursor: pointer;
+    background: none;
+    border: none;
+    z-index: 1001;
+    padding: 0;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    line-height: 1;
+}
+
+.modal .carousel {
+    width: 100%;
+    height: 100%;
+    aspect-ratio: auto;
+    background: transparent;
+}
+
+.modal .carousel-inner {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+}
+
+.modal .carousel-inner img {
+    max-width: 100%;
+    max-height: 90vh;
+    width: auto;
+    height: auto;
+    object-fit: contain;
+}
+
+.portfolio-grid .carousel-inner {
+    cursor: pointer;
+}
+
+.portfolio-grid .carousel {
+    aspect-ratio: 16/9;
+}
+
+.portfolio-grid .carousel-inner img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
