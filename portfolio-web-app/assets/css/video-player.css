@@ -1,0 +1,344 @@
+#modal-video-container {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%;
+    height: 100%;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    background: rgba(0, 0, 0, 0.9);
+    z-index: 1000;
+    pointer-events: all;  /* Allow clicks to pass through to controls */
+}
+
+.video-wrapper {
+    position: relative;
+    width: 100%;
+    max-width: 90vw;
+    max-height: 80vh;
+    display: flex;
+    align-items: center;
+    margin: 0 auto;
+    z-index: 1001;
+    pointer-events: all;  /* Restore pointer events for video and its controls */
+}
+
+.video-controls {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: rgba(0, 0, 0, 0.7);
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    z-index: 1003;
+}
+
+.video-controls button {
+    background: none;
+    border: none;
+    color: white;
+    cursor: pointer;
+    padding: 5px;
+    font-size: 1.2em;
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.video-controls button:hover {
+    opacity: 0.8;
+}
+
+.timeline {
+    flex-grow: 1;
+    position: relative;
+    height: 5px;
+}
+
+.seek-bar {
+    width: 100%;
+    height: 5px;
+    -webkit-appearance: none;
+    background: transparent;
+    position: relative;
+    z-index: 2;
+}
+
+.progress-bar {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    background: #fff;
+    width: 0;
+}
+
+.volume-control {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    min-width: 100px;
+}
+
+.volume-bar {
+    width: 60px;
+    height: 5px;
+    -webkit-appearance: none;
+    background: rgba(255, 255, 255, 0.3);
+    border-radius: 2.5px;
+}
+
+input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    height: 12px;
+    width: 12px;
+    border-radius: 50%;
+    background: white;
+    cursor: pointer;
+}
+
+#modal-video {
+    width: 100%;
+    height: 100%;
+    max-height: 80vh;
+    object-fit: contain;
+}
+
+.modal-content {
+    max-height: 90vh;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    z-index: 2001;  /* Higher than modal backdrop */
+    pointer-events: all;  /* Allow clicks to pass through */
+    isolation: isolate;
+}
+
+#modal-carousel {
+    position: relative;
+    z-index: 1001;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.carousel-control, .carousel-indicators {
+    z-index: 1002 !important;
+    position: relative;
+}
+
+.carousel-control {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(255, 255, 255, 0.3);
+    border: none;
+    color: white;
+    padding: 1rem;
+    cursor: pointer;
+    font-size: 24px;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.3s;
+}
+
+.carousel-control:hover {
+    background: rgba(255, 255, 255, 0.5);
+}
+
+.carousel-control.prev {
+    left: 10px;
+}
+
+.carousel-control.next {
+    right: 10px;
+}
+
+/* Center carousel indicators */
+.carousel-indicators {
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    width: auto;
+    padding: 0;
+    margin: 0;
+}
+
+.carousel-indicators .indicator {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.5);
+    border: none;
+    padding: 0;
+    cursor: pointer;
+}
+
+.carousel-indicators .indicator.active {
+    background: white;
+}
+
+/* Add new modal overlay styles */
+.modal.open {
+    z-index: 2000;  /* Highest z-index */
+    isolation: isolate; /* Create new stacking context */
+}
+
+.modal.open ~ * {
+    pointer-events: none;  /* Disable interaction with elements behind modal */
+    pointer-events: none !important;
+}
+
+/* Remove or comment out previous modal carousel control styles */
+/* .modal.open .carousel-control { ... } */
+
+/* New modal carousel control styles */
+.modal-carousel-control {
+    position: fixed;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 2004 !important;
+    background: rgba(255, 255, 255, 0.3);
+    border: none;
+    color: white;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    pointer-events: all;
+    isolation: isolate; /* Create new stacking context */
+}
+
+.modal-carousel-control:hover {
+    background: rgba(255, 255, 255, 0.5);
+}
+
+.modal-carousel-control.prev {
+    left: 20px;
+}
+
+.modal-carousel-control.next {
+    right: 20px;
+}
+
+/* Update modal content to allow clicks on controls */
+.modal-content {
+    /* ...existing code... */
+    pointer-events: all;
+}
+
+#modal-video-container {
+    /* ...existing code... */
+    pointer-events: all;
+}
+
+/* Hide non-modal carousel controls when modal is open */
+.modal.open ~ .portfolio .carousel-control,
+.modal.open ~ .portfolio .carousel-indicators {
+    display: none !important;
+}
+
+/* Ensure video controls stay on top in modal */
+.modal.open .video-controls {
+    z-index: 2003;  /* Highest z-index for video controls */
+}
+
+/* Ensure close button is always on top */
+.modal-close {
+    z-index: 2004 !important; /* Highest z-index */
+    position: absolute;
+    right: 20px;
+    top: 20px;
+    background: rgba(255, 255, 255, 0.3);
+    border: none;
+    color: white;
+    font-size: 24px;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.modal-close:hover {
+    background: rgba(255, 255, 255, 0.5);
+}
+
+/* Add specific positioning for modal carousel controls */
+.modal.open #modal-carousel .carousel-control {
+    display: flex !important;
+    position: fixed;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(255, 255, 255, 0.3);
+    width: 50px;
+    height: 50px;
+    pointer-events: all;
+}
+
+.modal.open #modal-carousel .carousel-control.prev {
+    left: 20px;
+}
+
+.modal.open #modal-carousel .carousel-control.next {
+    right: 20px;
+}
+
+/* Add overflow control for non-modal carousel */
+.portfolio-item {
+    position: relative;
+    overflow: hidden; /* Contain carousel controls within item boundaries */
+}
+
+/* Update non-modal carousel controls */
+.carousel:not(.modal .carousel) .carousel-control {
+    position: absolute;
+    z-index: 1; /* Lower z-index for non-modal controls */
+}
+
+/* Ensure navbar stays on top */
+header {
+    position: relative;
+    z-index: 1000; /* Higher than carousel controls but lower than modal */
+}
+
+/* Update portfolio grid positioning */
+.portfolio-grid {
+    position: relative;
+    z-index: 1; /* Lower than header */
+}
+
+/* Update carousel controls visibility on hover */
+.portfolio-item:hover .carousel-control {
+    opacity: 1;
+}
+
+.carousel-control {
+    /* ...existing code... */
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
