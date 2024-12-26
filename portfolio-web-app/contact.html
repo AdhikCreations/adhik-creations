@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Contact - Adhik Creations</title>
+    <link rel="icon" type="image/x-icon" href="assets/images/logo.png">
     <link rel="stylesheet" href="assets/css/styles.css">
     <link href="https://fonts.googleapis.com/css2?family=Google+Sans:wght@400;500;600&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
@@ -36,35 +37,85 @@
 
     <main>
         <section class="contact">
-            <div class="contact-form">
-                <h2>Contact Us</h2>
-                <form>
-                    <label for="name">Name:</label>
-                    <input type="text" id="name" name="name" required>
+            <div class="contact-container">
+                <div class="contact-form-card">
+                    <h2><span class="material-symbols-outlined">mail</span>Get in Touch</h2>
+                    <div id="success-message" class="alert success" style="display: none;">
+                        Message sent successfully! We'll get back to you soon.
+                    </div>
+                    <div id="error-message" class="alert error" style="display: none;">
+                        Oops! There was a problem sending your message.
+                    </div>
+                    <form id="contact-form" action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
+                        <div class="form-group">
+                            <input type="text" id="name" name="name" required>
+                            <label for="name">Full Name</label>
+                            <span class="material-symbols-outlined">person</span>
+                        </div>
 
-                    <label for="email">Email:</label>
-                    <input type="email" id="email" name="email" required>
+                        <div class="form-group">
+                            <input type="email" id="email" name="email" required>
+                            <label for="email">Email Address</label>
+                            <span class="material-symbols-outlined">email</span>
+                        </div>
 
-                    <label for="phone">Phone:</label>
-                    <input type="tel" id="phone" name="phone">
+                        <div class="form-group">
+                            <input type="tel" id="phone" name="phone">
+                            <label for="phone">Phone Number</label>
+                            <span class="material-symbols-outlined">phone</span>
+                        </div>
 
-                    <label for="message">Message:</label>
-                    <textarea id="message" name="message" rows="5" required></textarea>
+                        <div class="form-group">
+                            <textarea id="message" name="message" rows="4" required></textarea>
+                            <label for="message">Your Message</label>
+                            <span class="material-symbols-outlined">chat</span>
+                        </div>
 
-                    <button type="submit">Send</button>
-                </form>
-            </div>
-            <div class="contact-info">
-                <h2>Contact Information</h2>
-                <p>Phone: <a href="tel:+15551234567">+1 (555) 123-4567</a></p>
-                <p>Email: <a href="mailto:info@example.com">info@example.com</a></p>
-                <p>Address: 123 Main St, Anytown, NC</p>
-                <p>
-                    <a href="https://www.instagram.com/adhik_creations/" target="_blank">WhatsApp</a> |
-                    <a href="https://www.instagram.com/adhik_creations/" target="_blank">Email</a> |
-                    <a href="https://www.instagram.com/adhik_creations/" target="_blank">Facebook</a> |
-                    <a href="https://www.instagram.com/adhik_creations/" target="_blank">Instagram</a>
-                </p>
+                        <button type="submit" class="submit-btn">
+                            <span class="material-symbols-outlined">send</span>
+                            Send Message
+                        </button>
+                    </form>
+                </div>
+
+                <div class="contact-info-card">
+                    <h2><span class="material-symbols-outlined">contact_page</span>Contact Information</h2>
+                    <div class="info-item">
+                        <span class="material-symbols-outlined">phone</span>
+                        <div>
+                            <h3>Phone</h3>
+                            <a href="tel:+15551234567">+1 (555) 123-4567</a>
+                        </div>
+                    </div>
+                    <div class="info-item">
+                        <span class="material-symbols-outlined">mail</span>
+                        <div>
+                            <h3>Email</h3>
+                            <a href="mailto:info@example.com">contact.adhikcreations@gmail.com</a>
+                        </div>
+                    </div>
+                    <div class="info-item">
+                        <span class="material-symbols-outlined">location_on</span>
+                        <div>
+                            <h3>Address</h3>
+                            <p>Cary, NC</p>
+                        </div>
+                    </div>
+                    <div class="social-links">
+                        <a href="https://wa.me/yourwhatsappnumber" class="social-btn whatsapp">
+                            <i class="fab fa-whatsapp"></i> WhatsApp
+                        </a>
+                        <a href="mailto:contact.adhikcreations@gmail.com" class="social-btn email">
+                            <i class="far fa-envelope"></i> Email
+                        </a>
+                        <a href="https://facebook.com/adhik_creations" class="social-btn facebook">
+                            <i class="fab fa-facebook-f"></i> Facebook
+                        </a>
+                        <a href="https://instagram.com/adhik_creations" class="social-btn instagram">
+                            <i class="fab fa-instagram"></i> Instagram
+                        </a>
+                    </div>
+                </div>
             </div>
         </section>
     </main>
@@ -89,6 +140,37 @@
 
             menuToggle.addEventListener('click', function() {
                 nav.classList.toggle('open');
+            });
+
+            // Add form handling
+            const form = document.getElementById('contact-form');
+            const successMessage = document.getElementById('success-message');
+            const errorMessage = document.getElementById('error-message');
+
+            form.addEventListener('submit', function(e) {
+                e.preventDefault();
+                const formData = new FormData(form);
+
+                fetch(form.action, {
+                    method: 'POST',
+                    body: formData,
+                    headers: {
+                        'Accept': 'application/json'
+                    }
+                })
+                .then(response => {
+                    if (response.ok) {
+                        form.reset();
+                        successMessage.style.display = 'block';
+                        errorMessage.style.display = 'none';
+                    } else {
+                        throw new Error('Network response was not ok');
+                    }
+                })
+                .catch(error => {
+                    errorMessage.style.display = 'block';
+                    successMessage.style.display = 'none';
+                });
             });
         });
     </script>
