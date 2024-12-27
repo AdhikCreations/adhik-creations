@@ -1,5 +1,15 @@
-/* Variables */
+@import 'base.css';
+@import 'components.css';
+@import 'layout.css';
+@import 'utilities.css';
+@import 'responsive.css';
+@import 'video-player.css';
+
+/* -----------------------------
+  CSS Custom Properties 
+----------------------------- */
 :root {
+    /* Colors */
     --primary: #6200ee;
     --primary-variant: #3700b3;
     --secondary: #03dac6;
@@ -12,9 +22,11 @@
     --on-surface: #000000;
     --on-error: #ffffff;
     
-    /* Elevation and Spacing */
+    /* Elevation */
     --elevation-1: 0 2px 4px rgba(0,0,0,0.1);
     --elevation-2: 0 4px 8px rgba(0,0,0,0.12);
+    
+    /* Spacing */
     --container-padding: clamp(16px, 5vw, 24px);
     --section-spacing: clamp(2rem, 5vw, 4rem);
     
@@ -25,81 +37,129 @@
     --fs-lg: clamp(1.56rem, 1vw + 1.31rem, 2.11rem);
     --fs-xl: clamp(1.95rem, 1.56vw + 1.56rem, 2.81rem);
     --fs-xxl: clamp(2.44rem, 2.38vw + 1.85rem, 3.75rem);
+
+    /* Border Radius */
+    --border-radius-sm: 4px;
+    --border-radius-md: 8px;
+    --border-radius-lg: 12px;
+
+    /* Example of project-specific color override */
+    --theme-accent: #FF5722;
+    --theme-success: #4CAF50;
+    --theme-warning: #FFC107;
+    --theme-info: #2196F3;
 }
 
-/* Base Styles */
-body {
-    font-family: 'Google Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+/* -----------------------------
+  Reset & Base Styles 
+----------------------------- */
+*, *::before, *::after {
+    box-sizing: border-box;
     margin: 0;
     padding: 0;
+}
+
+body {
+    font-family: 'Google Sans', -apple-system, BlinkMacSystemFont, sans-serif;
     background-color: var(--background);
     color: var(--on-background);
     line-height: 1.6;
     font-size: var(--fs-base);
 }
 
-/* Utility Classes */
+img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+/* -----------------------------
+  Utility Classes 
+----------------------------- */
 .container {
     width: min(100% - 2rem, 1200px);
     margin-inline: auto;
     padding-inline: var(--container-padding);
 }
 
-/* Typography */
-h1, h2, h3, h4, h5, h6 {
-    font-weight: 600;
-    margin: 0;
-}
-
-h1 { font-size: var(--fs-xxl); }
-h2 { font-size: var(--fs-xl); }
-h3 { font-size: var(--fs-lg); }
-
-/* Common Components */
-.card-base {
-    background: var(--surface);
-    border-radius: 12px;
-    overflow: hidden;
-    box-shadow: var(--elevation-1);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.card-base:hover {
-    transform: translateY(-4px);
-    box-shadow: var(--elevation-2);
-}
-
-/* Buttons */
-.btn-base {
-    display: inline-block;
-    padding: 0.75rem 1.5rem;
-    border-radius: 4px;
-    font-weight: 500;
-    font-size: 1rem;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-    transition: all 0.3s ease;
-}
-
-.btn-primary {
-    composes: btn-base;
-    background: var(--primary);
-    color: var(--on-primary);
-}
-
-.btn-secondary {
-    composes: btn-base;
-    background: var(--secondary);
-    color: var(--on-secondary);
-}
-
-/* Grid Layouts */
+/* Grid layouts */
 .grid-auto-fit {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr));
     gap: clamp(1rem, 3vw, 2rem);
 }
 
+/* -----------------------------
+  Typography 
+----------------------------- */
+.section-title {
+    font-size: var(--fs-xl);
+    text-align: center;
+    margin: var(--section-spacing) 0;
+}
+
+/* -----------------------------
+  Components 
+----------------------------- */
+/* Buttons */
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.75rem 1.5rem;
+    border-radius: var(--border-radius-sm);
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.btn-primary {
+    background: var(--primary);
+    color: var(--on-primary);
+}
+
+.btn-secondary {
+    background: var(--secondary);
+    color: var(--on-secondary);
+}
+
+.btn.btn-accent {
+    background-color: var(--theme-accent);
+    color: var(--on-primary);
+}
+
+/* Cards */
+.card {
+    background: var(--surface);
+    border-radius: var(--border-radius-lg);
+    overflow: hidden;
+    box-shadow: var(--elevation-1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--elevation-2);
+}
+
+.card.card-hover-accent:hover {
+    border-color: var(--theme-accent);
+}
+
+.card.card-accent {
+    border-color: var(--theme-accent);
+}
+
+/* -----------------------------
+  Layout Components 
+----------------------------- */
 /* Header & Navigation */
 header {
     background-color: var(--primary);
@@ -118,94 +178,33 @@ header .container {
     padding: 0.5rem var(--container-padding);
 }
 
-nav#main-nav {
-    flex-grow: 1;
-    display: flex;
-    justify-content: flex-end;
-}
-
-nav#main-nav ul {
-    display: flex;
-    gap: 1.5rem;
-    align-items: center;
-    margin: 0;
-    padding: 0;
-    list-style: none;
-}
-
-nav#main-nav a {
-    color: var(--on-primary);
-    font-weight: 500;
-    padding: 0.5rem 1rem;
-    border-radius: 4px;
-    transition: background-color 0.3s ease;
-    text-transform: uppercase;
-    font-size: 0.9rem;
-    letter-spacing: 0.5px;
-    text-decoration: none;  /* Add this line */
-}
-
-nav#main-nav a:hover,
-nav#main-nav a.active {
-    background-color: var(--primary-variant);
-    color: var(--on-primary);
-}
-
-/* Ensure consistent menu toggle behavior */
-.menu-toggle {
-    display: none;
-    background: none;
-    border: none;
-    color: var(--on-primary);
-    cursor: pointer;
-    padding: 0.5rem;
-}
-
-.menu-toggle .material-symbols-outlined {
-    font-size: 24px;
-}
-
-@media (max-width: 800px) {
-    .menu-toggle {
-        display: block;
-    }
-
-    nav#main-nav ul {
-        display: none;
-        position: absolute;
-        top: 100%;
-        left: 0;
-        right: 0;
-        background-color: var(--surface);
-        flex-direction: column;
-        padding: 1rem;
-    }
-
-    nav#main-nav.open ul {
-        display: flex;
-    }
-
-    nav#main-nav ul li {
-        width: 100%;
-    }
-
-    nav#main-nav ul a {
-        display: block;
-        padding: 0.75rem 2rem;
-        width: 100%;
-    }
-}
+/* Remove all navigation-related styles since they're now in layout.css */
 
 /* Hero Section */
 .hero {
-    background-image: url('../images/banner.jpg');
-    background-size: cover;
+    background-image: url('../images/logo.png');
+    /* background-size: cover; */
     background-position: center;
     text-align: center;
-    padding: 10rem 0;
+    min-height: 100vh;
     color: #fff;
     position: relative;
     z-index: 1;
+    display: flex;
+    align-items: center;
+}
+
+.hero .container {
+    position: relative;
+    z-index: 2;
+    max-width: 800px;
+    margin: 0 auto;
+    width: 100%;
+}
+
+.hero .centered-logo {
+    max-width: 200px;
+    margin-bottom: 2rem;
 }
 
 .hero::before {
@@ -234,12 +233,18 @@ nav#main-nav a.active {
     max-width: 800px; /* Limit container width */
 }
 
+.hero-buttons {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    margin-top: 2rem;
+}
+
 /* Footer */
 footer {
     background-color: var(--primary);
     color: var(--on-primary);
     padding: 2rem 0;
-    margin-top: 3rem;
 }
 
 .footer-content {
@@ -262,13 +267,6 @@ footer {
 }
 
 /* Services Section */
-.section-title {
-    font-size: 2rem;
-    text-align: center;
-    margin: 2rem 0;
-    color: var(--on-background);
-}
-
 .service-card h3 {
     font-size: 1.25rem;
     font-weight: 500;
@@ -316,11 +314,6 @@ footer {
     background-color: var(--accent-color);
     transform: translateY(-2px);
     box-shadow: 0 4px 8px var(--elevation-color); /* Increased shadow on hover */
-}
-
-/* Navigation */
-nav .menu-toggle {
-    display: none;
 }
 
 /* Services Grid */
@@ -450,53 +443,6 @@ nav .menu-toggle {
         font-size: var(--fs-base);
     }
 
-    nav ul {
-        position: absolute; /* Position the menu */
-        top: 64px; /* Adjust top position */
-        left: 0;
-        width: 100%;
-        background-color: var(--primary);
-        flex-direction: column;
-        align-items: flex-start; /* Align items to the start */
-        padding: 1rem;
-        display: none;
-        z-index: 100;
-        box-shadow: 0 2px 4px var(--elevation-color); /* Add shadow */
-    }
-
-    nav.open ul {
-        display: flex;
-    }
-
-    nav li {
-        margin: 0.5rem 0;
-        width: 100%; /* Full width */
-    }
-
-    nav a {
-        color: var(--on-primary);
-        padding: 0.5rem;
-        display: block; /* Full width */
-    }
-
-    nav a:hover {
-        background-color: var(--primary-variant);
-    }
-
-    nav .menu-toggle {
-        display: block;
-        background: none;
-        border: none;
-        cursor: pointer;
-        padding: 0;
-        margin-left: auto; /* Push to the right */
-    }
-
-    nav .menu-toggle i {
-        color: #fff;
-        font-size: 1.6rem; /* Slightly larger icon */
-    }
-
     .hero {
         padding: 6rem 0; /* Adjusted padding */
     }
@@ -524,23 +470,6 @@ nav .menu-toggle {
 
 /* Responsive Design Improvements */
 @media (max-width: 768px) {
-    nav ul {
-        background-color: var(--surface);
-        box-shadow: var(--elevation-2);
-        padding: 1rem;
-    }
-
-    nav ul li {
-        width: 100%;
-    }
-
-    nav ul li a {
-        padding: 0.75rem 1rem;
-        display: block;
-        text-align: left;
-        color: var(--on-surface);
-    }
-
     .hero {
         min-height: 60vh;
         display: grid;
@@ -568,7 +497,7 @@ nav .menu-toggle {
 }
 
 /* Larger Screen Optimizations */
-@media (min-width: 1025px) {
+@media (min-width:500px) {
     .grid-auto-fit {
         grid-template-columns: repeat(3, 1fr);
     }
@@ -898,7 +827,7 @@ img {
 
 .form-group input:focus,
 .form-group textarea:focus {
-    border-color: #2196f3;
+    border-color: var(--theme-info);
     box-shadow: 0 0 0 2px rgba(33, 150, 243, 0.1);
 }
 
@@ -929,7 +858,7 @@ img {
     gap: 0.5rem;
     width: 100%;
     padding: 1rem;
-    background: #2196f3;
+    background: var(--theme-info);
     color: white;
     border: none;
     border-radius: 8px;
@@ -939,7 +868,7 @@ img {
 }
 
 .submit-btn:hover {
-    background: #1976d2;
+    background: color-mix(in srgb, var(--theme-info) 85%, black);
 }
 
 .info-item {
@@ -1027,3 +956,34 @@ img {
     color: #721c24;
     border: 1px solid #f5c6cb;
 }
+
+/* Project-specific overrides or custom styles can go here */
+/* These should be minimal since most styles are now modular */
+
+/* Any one-off styles that don't fit in other categories */
+.about-section {
+    padding: var(--section-spacing);
+    background: linear-gradient(to bottom, var(--surface), var(--background));
+}
+
+.about-section .highlight {
+    color: var(--theme-accent);
+    font-weight: 500;
+}
+
+.service-highlight {
+    border-left: 4px solid var(--theme-accent);
+    padding-left: 1rem;
+}
+
+/* Custom Animations */
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+.fade-in {
+    animation: fadeIn 0.3s ease-in;
+}
+
+/* Avoid duplicating styles that already exist in the modular files */

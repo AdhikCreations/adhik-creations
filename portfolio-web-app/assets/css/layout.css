@@ -1,0 +1,228 @@
+/* Page Layout */
+body {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+main {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+main section:only-child {
+    flex: 1;
+    margin-bottom: 0;  /* Remove bottom margin */
+}
+
+/* Header & Navigation */
+header {
+    background-color: var(--primary);
+    box-shadow: var(--elevation-1);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    padding: 1rem 0;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.logo img {
+    height: 2.5rem;
+    width: auto;
+    object-fit: contain;
+}
+
+.logo span {
+    font-size: var(--fs-md);
+    color: var(--on-primary);
+    font-weight: 500;
+}
+
+/* Main Navigation - Base Styles */
+nav#main-nav {
+    flex-grow: 1;
+    display: flex;
+    justify-content: flex-end;
+}
+
+nav#main-nav ul {
+    display: flex;
+    gap: 1.5rem;
+    align-items: center;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+/* Menu Toggle - Hidden by Default */
+.menu-toggle {
+    display: none;
+    background: none;
+    border: none;
+    color: var(--on-primary);
+    cursor: pointer;
+    padding: 0.5rem;
+}
+
+/* Hero Section */
+.hero {
+    position: relative;
+    min-height: 100vh;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--background);
+    margin: 0;
+    overflow: hidden;
+}
+
+.hero-background {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: min(90vw, 800px); /* Limit width to viewport width or 800px */
+    height: min(80vh, 600px); /* Limit height to viewport height or 600px */
+    background-image: url('../images/logo.png');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+    z-index: 0;
+}
+
+.hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.7);
+    z-index: 1;
+}
+
+.hero .container {
+    position: relative;
+    z-index: 2;
+    width: 100%;
+    max-width: 800px;
+    padding: 2rem;
+    text-align: center;
+}
+
+@media (max-width: 768px) {
+    .hero-background {
+        width: 100vw;
+        height: 100vh;
+        /* background-size: cover; */
+    }
+}
+
+/* Different background sizing for different screen widths */
+@media (min-width: 1024px) {
+    .hero {
+        background-size: auto 80vh; /* Height 80% of viewport, auto width */
+    }
+}
+
+@media (min-width: 768px) and (max-width: 1023px) {
+    .hero {
+        background-size: auto 70vh;
+    }
+}
+
+@media (max-width: 768px) {
+    .hero {
+        background-size: 100% auto;
+    }
+}
+
+/* Main Content Layouts */
+.services-grid,
+.portfolio-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr));
+    gap: clamp(1rem, 3vw, 2rem);
+    padding: var(--section-spacing) 0;
+}
+
+/* Contact Layout */
+.contact-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+}
+
+/* Footer */
+footer {
+    background-color: var(--primary);
+    color: var(--on-primary);
+    padding: 2rem 0;
+}
+
+/* About Section Layout */
+.about-section {
+    padding: var(--section-spacing);
+    background: linear-gradient(to bottom, var(--surface), var(--background));
+}
+
+/* Modal Layout */
+.modal-content {
+    width: 90%;
+    height: 90%;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    max-width: 1400px;
+    margin: 0 auto;
+    padding-top: 40px;
+}
+
+/* Mobile Navigation - Single Source of Truth */
+@media (max-width: 800px) {
+    .menu-toggle {
+        display: block;
+    }
+
+    nav#main-nav ul {
+        display: none;
+        position: absolute;
+        top: var(--header-height, 64px);
+        left: 0;
+        width: 100%;
+        flex-direction: column;
+        background-color: var(--primary);
+        padding: 1rem;
+        box-shadow: var(--elevation-2);
+        z-index: 100;
+        gap: 0;
+    }
+
+    nav#main-nav.open ul {
+        display: flex;
+    }
+
+    nav#main-nav ul li {
+        width: 100%;
+    }
+
+    nav#main-nav ul a {
+        display: block;
+        width: 100%;
+        padding: 1rem;
+        color: var(--on-primary);
+        text-align: left;
+    }
+
+    nav#main-nav ul a:hover,
+    nav#main-nav ul a.active {
+        background-color: var(--primary-variant);
+    }
+}

@@ -1,0 +1,73 @@
+/* Base Mobile Styles (up to 768px) */
+@media (max-width: 768px) {
+    /* Typography */
+    :root {
+        --fs-xl: clamp(1.5rem, 1vw + 1.2rem, 2rem);
+        --section-spacing: 2rem;
+    }
+
+    /* Layout */
+    .container { padding: 0 var(--container-padding); }
+    
+    /* Remove all nav-related styles as they're now in layout.css */
+    
+    /* Components */
+    .hero-buttons {
+        flex-direction: column;
+        max-width: 300px;
+        margin: auto;
+    }
+    
+    .social-links { grid-template-columns: 1fr; }
+    
+    /* Contact */
+    .contact-container { grid-template-columns: 1fr; }
+}
+
+/* Tablet Styles (769px - 1024px) */
+@media (min-width: 769px) and (max-width: 1024px) {
+    .grid-auto-fit { grid-template-columns: repeat(2, 1fr); }
+    .hero { min-height: 50vh; }
+}
+
+/* Desktop Styles (1025px and up) */
+@media (min-width: 1025px) {
+    .grid-auto-fit { grid-template-columns: repeat(3, 1fr); }
+    .hero { min-height: 70vh; }
+}
+
+/* Touch Device Optimizations */
+@media (hover: none) {
+    .btn, .card a {
+        padding: min(16px, 4vw);
+    }
+    
+    .card:hover {
+        transform: none;
+        box-shadow: var(--elevation-1);
+    }
+}
+
+/* High DPI Screens */
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+    .hero::before { background-color: rgba(0, 0, 0, 0.6); }
+}
+
+/* Print Styles */
+@media print {
+    .hero { 
+        background: none;
+        color: var(--on-surface);
+    }
+    
+    .nav,
+    .footer,
+    .social-links,
+    .menu-toggle { 
+        display: none; 
+    }
+    
+    a[href]::after {
+        content: " (" attr(href) ")";
+    }
+}

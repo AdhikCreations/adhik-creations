@@ -8,18 +8,24 @@ class PortfolioCarousel {
 
     createCarousel() {
         const firstItem = this.media[0];
-        const mediaClass = this.isModal ? 'modal-image' : 'grid-image';
+        const mediaClass = this.isModal ? 'modal-media' : 'grid-media';
         
         return `
             <div class="carousel">
                 <div class="carousel-inner">
                     ${this.createMediaElement(firstItem, mediaClass)}
                 </div>
-                <button class="carousel-control prev" aria-label="Previous item">❮</button>
-                <button class="carousel-control next" aria-label="Next item">❯</button>
+                <button class="carousel-control prev" aria-label="Previous">
+                    <span class="material-symbols-outlined">chevron_left</span>
+                </button>
+                <button class="carousel-control next" aria-label="Next">
+                    <span class="material-symbols-outlined">chevron_right</span>
+                </button>
                 <div class="carousel-indicators">
                     ${this.media.map((_, index) => 
-                        `<button class="indicator${index === 0 ? ' active' : ''}" aria-label="Go to item ${index + 1}"></button>`
+                        `<button class="indicator${index === 0 ? ' active' : ''}" 
+                         aria-label="Go to item ${index + 1}"
+                         aria-current="${index === 0 ? 'true' : 'false'}"></button>`
                     ).join('')}
                 </div>
             </div>
@@ -237,7 +243,7 @@ class PortfolioCarousel {
         const carousel = this.container.querySelector('.carousel');
         const carouselInner = carousel.querySelector('.carousel-inner');
         const currentItem = this.media[this.currentIndex];
-        const mediaClass = this.isModal ? 'modal-image' : 'grid-image';
+        const mediaClass = this.isModal ? 'modal-media' : 'grid-media';
         
         // Handle modal view
         if (this.isModal) {
@@ -301,8 +307,14 @@ class PortfolioCarousel {
         const oldVideo = document.getElementById('modal-video');
         oldVideo.parentNode.replaceChild(video, oldVideo);
         
-        video.volume = 0.05; // Set initial volume to 5%
-        volumeBar.value = 10;
+        // Update initial volume to match CSS custom properties
+        video.volume = 0.05;
+        volumeBar.value = 50;
+
+        // Add transition class for smooth animations
+        playPauseBtn.classList.add('transition');
+        muteBtn.classList.add('transition');
+
         playPauseBtn.innerHTML = '<i class="fas fa-play"></i>';
         muteBtn.innerHTML = '<i class="fas fa-volume-up"></i>';
 
