@@ -3,21 +3,22 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portfolio - Adhik Creations</title>
+    <title>Testimonials - Adhik Creations</title>
     <link rel="icon" type="image/x-icon" href="assets/images/logo.png">
     <link rel="stylesheet" href="assets/css/styles.css">
     <link href="https://fonts.googleapis.com/css2?family=Google+Sans:wght@400;500;600&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <link rel="stylesheet" href="assets/css/video-player.css">
 </head>
 <body>
     <header>
         <div class="container">
-            <div class="logo">
-                <img src="assets/images/logo.png" alt="Adhik Creations Logo">
-                <span>Adhik Creations</span>
-            </div>
+            <a href="index.html" style="text-decoration: none; color: inherit;">
+                <div class="logo">
+                    <img src="assets/images/logo.png" alt="Adhik Creations Logo">
+                    <span>Adhik Creations</span>
+                </div>
+            </a>
             <nav id="main-nav">
                 <button class="menu-toggle" aria-label="Toggle navigation">
                     <span class="material-symbols-outlined">menu</span>
@@ -25,7 +26,7 @@
                 <ul>
                     <li><a href="index.html">Home</a></li>
                     <li><a href="services.html">Services</a></li>
-                    <li><a href="portfolio.html">Portfolio</a></li>
+                    <li><a href="portfolio.html" class="active">Portfolio</a></li>
                     <li><a href="testimonials.html">Testimonials</a></li>
                     <li><a href="contact.html">Contact</a></li>
                     <li><a href="about.html">About</a></li>
@@ -35,71 +36,75 @@
     </header>
 
     <main>
-        <section class="portfolio">
+        <section class="portfolio" aria-label="Portfolio Gallery">
             <div class="container">
                 <h2 class="section-title">Our Portfolio</h2>
-                <div id="portfolio-grid" class="portfolio-grid">
+                <div class="portfolio-grid" id="portfolio-grid"></div>
                     <!-- Dynamic content will be inserted here -->
                 </div>
             </div>
         </section>
     </main>
 
-    <footer>
-        <div class="container footer-content">
-            <div class="copyright">
-                <p>&copy; 2024 Adhik Creations. All rights reserved.</p>
-            </div>
-            <div class="social-icons">
-                <a href="https://www.instagram.com/adhik_creations/" aria-label="Facebook" target="_blank"><i class="fab fa-facebook-f"></i></a>
-                <a href="https://www.instagram.com/adhik_creations/" aria-label="Instagram" target="_blank"><i class="fab fa-instagram"></i></a>
-                <a href="https://www.instagram.com/adhik_creations/" aria-label="WhatsApp" target="_blank"><i class="fab fa-whatsapp"></i></a>
-            </div>
-        </div>
-    </footer>
-
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const menuToggle = document.querySelector('.menu-toggle');
-            const nav = document.querySelector('#main-nav');
-
-            menuToggle.addEventListener('click', function() {
-                nav.classList.toggle('open');
-            });
-        });
-    </script>
-    <div id="portfolio-modal" class="modal">
-        <button class="modal-close" aria-label="Close modal">×</button>
+    <!-- Update Modal Structure -->
+    <div id="portfolio-modal" class="modal" role="dialog" aria-modal="true" aria-label="Image Gallery">
         <div class="modal-content">
-            <!-- Move carousel controls outside modal-carousel -->
-            <button class="modal-carousel-control prev" aria-label="Previous item">❮</button>
-            <button class="modal-carousel-control next" aria-label="Next item">❯</button>
-            <div id="modal-carousel"></div>
-            <div id="modal-video-container" style="display: none;">
+            <button class="modal-close" aria-label="Close modal">
+                <span class="material-symbols-outlined">close</span>
+            </button>
+            <button class="modal-carousel-control prev" aria-label="Previous item">
+                <span class="material-symbols-outlined">chevron_left</span>
+            </button>
+            <button class="modal-carousel-control next" aria-label="Next item">
+                <span class="material-symbols-outlined">chevron_right</span>
+            </button>
+            <div id="modal-carousel" class="carousel"></div>
+            <div id="modal-video-container" class="video-container">
                 <div class="video-wrapper">
-                    <video id="modal-video">
+                    <video id="modal-video" preload="metadata">
                         <source src="" type="video/mp4">
                         Your browser does not support the video tag.
                     </video>
                     <div class="video-controls">
-                        <button class="play-pause" aria-label="Play/Pause">
+                        <button class="btn-icon play-pause" aria-label="Play/Pause">
                             <i class="fas fa-play"></i>
                         </button>
                         <div class="timeline">
-                            <input type="range" class="seek-bar" value="0" min="0" max="100" step="0.1">
+                            <input type="range" class="seek-bar" value="0" min="0" max="100" step="0.1" aria-label="Video progress">
                             <div class="progress-bar"></div>
                         </div>
                         <div class="volume-control">
-                            <button class="mute-btn" aria-label="Mute">
+                            <button class="btn-icon mute-btn" aria-label="Mute">
                                 <i class="fas fa-volume-up"></i>
                             </button>
-                            <input type="range" class="volume-bar" min="0" max="100" value="10">
+                            <input type="range" class="volume-bar" min="0" max="100" value="50" aria-label="Volume">
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+
+    <footer class="site-footer">
+        <div class="container footer-content">
+            <div class="copyright">
+                <p>&copy; 2024 Adhik Creations. All rights reserved.</p>
+            </div>
+            <div class="social-icons">
+                <a href="https://www.facebook.com/adhikcreations" aria-label="Facebook" target="_blank" rel="noopener" class="transition">
+                    <i class="fab fa-facebook-f"></i>
+                </a>
+                <a href="https://www.instagram.com/adhik_creations/" aria-label="Instagram" target="_blank" rel="noopener" class="transition">
+                    <i class="fab fa-instagram"></i>
+                </a>
+                <a href="https://wa.me/1234567890" aria-label="WhatsApp" target="_blank" rel="noopener" class="transition">
+                    <i class="fab fa-whatsapp"></i>
+                </a>
+            </div>
+        </div>
+    </footer>
+
     <script src="assets/js/portfolio.js"></script>
+    <script src="assets/js/scripts.js"></script>
 </body>
 </html>

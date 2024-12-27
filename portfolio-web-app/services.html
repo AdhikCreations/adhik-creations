@@ -13,19 +13,19 @@
 <body>
     <header>
         <div class="container">
-            <div class="logo">
-                <img src="assets/images/logo.png" alt="Adhik Creations Logo">
-                <span>Adhik Creations</span>
-            </div>
+            <a href="index.html" style="text-decoration: none; color: inherit;">
+                <div class="logo">
+                    <img src="assets/images/logo.png" alt="Adhik Creations Logo">
+                    <span>Adhik Creations</span>
+                </div>
+            </a>
             <nav id="main-nav">
                 <button class="menu-toggle" aria-label="Toggle navigation">
-                    <span class="material-symbols-outlined">
-                        menu
-                    </span>
+                    <span class="material-symbols-outlined">menu</span>
                 </button>
                 <ul>
                     <li><a href="index.html">Home</a></li>
-                    <li><a href="services.html">Services</a></li>
+                    <li><a href="services.html" class="active">Services</a></li>
                     <li><a href="portfolio.html">Portfolio</a></li>
                     <li><a href="testimonials.html">Testimonials</a></li>
                     <li><a href="contact.html">Contact</a></li>
@@ -41,37 +41,43 @@
                 <h2 class="section-title">Our Services</h2>
                 <div class="services-grid">
                     <div class="service-card">
-                        <img src="assets/images/services/decor-rental.jpeg" alt="Elegant event decoration setup with floral arrangements and lighting">
-                        <h3>Décor Rentals</h3>
-                        <p>Transform your event space with our extensive collection of premium decor items. From elegant centerpieces to stunning backdrops.</p>
-                        <a href="portfolio.html" class="material-button">Learn More</a>
+                        <div class="card">
+                            <img src="assets/images/services/decor-rental.jpeg" alt="Elegant event decoration setup with floral arrangements and lighting">
+                            <h3>Décor Rentals</h3>
+                            <p>Transform your event space with our extensive collection of premium decor items. From elegant centerpieces to stunning backdrops.</p>
+                            <a href="portfolio.html" class="btn btn-primary">Learn More</a>
+                        </div>
                     </div>
                     <div class="service-card">
-                        <img src="assets/images/services/event-management.jpg" alt="Professional event planning and coordination">
-                        <h3>Event Management</h3>
-                        <p>Professional event planning and management services.</p>
-                        <a href="portfolio.html" class="material-button">Learn More</a>
+                        <div class="card">
+                            <img src="assets/images/services/event-management.jpg" alt="Professional event planning and coordination">
+                            <h3>Event Management</h3>
+                            <p>Professional event planning and management services for all types of occasions.</p>
+                            <a href="portfolio.html" class="btn btn-primary">Learn More</a>
+                        </div>
                     </div>
                     <div class="service-card">
-                        <img src="assets/images/services/return-gifts.jpg" alt="Beautifully packaged return gifts collection">
-                        <h3>Return Gifts</h3>
-                        <p>Unique and memorable return gifts for your guests.</p>
-                        <a href="portfolio.html" class="material-button">Learn More</a>
+                        <div class="card">
+                            <img src="assets/images/services/return-gifts.jpg" alt="Beautifully packaged return gifts collection">
+                            <h3>Return Gifts</h3>
+                            <p>Unique and memorable return gifts for your guests that leave a lasting impression.</p>
+                            <a href="portfolio.html" class="btn btn-primary">Learn More</a>
+                        </div>
                     </div>
                 </div>
             </div>
         </section>
     </main>
 
-    <footer>
+    <footer class="site-footer">
         <div class="container footer-content">
             <div class="copyright">
                 <p>&copy; 2024 Adhik Creations. All rights reserved.</p>
             </div>
             <div class="social-icons">
-                <a href="https://www.instagram.com/adhik_creations/" aria-label="Facebook" target="_blank"><i class="fab fa-facebook-f"></i></a>
-                <a href="https://www.instagram.com/adhik_creations/" aria-label="Instagram" target="_blank"><i class="fab fa-instagram"></i></a>
-                <a href="https://www.instagram.com/adhik_creations/" aria-label="WhatsApp" target="_blank"><i class="fab fa-whatsapp"></i></a>
+                <a href="https://www.instagram.com/adhik_creations/" aria-label="Facebook" target="_blank" class="transition"><i class="fab fa-facebook-f"></i></a>
+                <a href="https://www.instagram.com/adhik_creations/" aria-label="Instagram" target="_blank" class="transition"><i class="fab fa-instagram"></i></a>
+                <a href="https://www.instagram.com/adhik_creations/" aria-label="WhatsApp" target="_blank" class="transition"><i class="fab fa-whatsapp"></i></a>
             </div>
         </div>
     </footer>

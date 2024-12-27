@@ -13,10 +13,12 @@
 <body>
     <header>
         <div class="container">
-            <div class="logo">
-                <img src="assets/images/logo.png" alt="Adhik Creations Logo">
-                <span>Adhik Creations</span>
-            </div>
+            <a href="index.html" style="text-decoration: none; color: inherit;">
+                <div class="logo">
+                    <img src="assets/images/logo.png" alt="Adhik Creations Logo">
+                    <span>Adhik Creations</span>
+                </div>
+            </a>
             <nav id="main-nav">
                 <button class="menu-toggle" aria-label="Toggle navigation">
                     <span class="material-symbols-outlined">menu</span>
@@ -25,7 +27,7 @@
                     <li><a href="index.html">Home</a></li>
                     <li><a href="services.html">Services</a></li>
                     <li><a href="portfolio.html">Portfolio</a></li>
-                    <li><a href="testimonials.html">Testimonials</a></li>
+                    <li><a href="testimonials.html" class="active">Testimonials</a></li>
                     <li><a href="contact.html">Contact</a></li>
                     <li><a href="about.html">About</a></li>
                 </ul>
@@ -37,49 +39,53 @@
         <section class="testimonials">
             <div class="container">
                 <h2 class="section-title">Client Testimonials</h2>
-                <div id="testimonialCarousel" class="carousel slide" data-bs-ride="carousel">
-                    <div class="carousel-inner">
-                        <div class="carousel-item active">
-                            <div class="testimonial">
-                                <p>"Excellent service!  Highly recommend."</p>
-                                <p>- John Doe</p>
-                            </div>
-                        </div>
-                        <div class="carousel-item">
-                            <div class="testimonial">
-                                <p>"The team was professional and efficient."</p>
-                                <p>- Jane Smith</p>
-                            </div>
-                        </div>
-                        <div class="carousel-item">
-                            <div class="testimonial">
-                                <p>"I was very pleased with the results."</p>
-                                <p>- David Lee</p>
+                <div class="testimonials-grid">
+                    <div class="testimonial-card card">
+                        <div class="testimonial-content">
+                            <span class="material-symbols-outlined quote-icon">format_quote</span>
+                            <p class="testimonial-text">"Excellent service! The decoration was exactly what we wanted. Would highly recommend for any event."</p>
+                            <div class="testimonial-author">
+                                <h4>John Doe</h4>
+                                <p class="event-type">Wedding Ceremony</p>
                             </div>
                         </div>
                     </div>
-                    <button class="carousel-control-prev" type="button" data-bs-target="#testimonialCarousel" data-bs-slide="prev">
-                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                        <span class="visually-hidden">Previous</span>
-                    </button>
-                    <button class="carousel-control-next" type="button" data-bs-target="#testimonialCarousel" data-bs-slide="next">
-                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                        <span class="visually-hidden">Next</span>
-                    </button>
+
+                    <div class="testimonial-card card">
+                        <div class="testimonial-content">
+                            <span class="material-symbols-outlined quote-icon">format_quote</span>
+                            <p class="testimonial-text">"The team was professional and efficient. They transformed our venue into something magical."</p>
+                            <div class="testimonial-author">
+                                <h4>Jane Smith</h4>
+                                <p class="event-type">Birthday Celebration</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="testimonial-card card">
+                        <div class="testimonial-content">
+                            <span class="material-symbols-outlined quote-icon">format_quote</span>
+                            <p class="testimonial-text">"I was very pleased with the results. The attention to detail was impressive."</p>
+                            <div class="testimonial-author">
+                                <h4>David Lee</h4>
+                                <p class="event-type">Corporate Event</p>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>
     </main>
 
-    <footer>
+    <footer class="site-footer">
         <div class="container footer-content">
             <div class="copyright">
                 <p>&copy; 2024 Adhik Creations. All rights reserved.</p>
             </div>
             <div class="social-icons">
-                <a href="https://www.instagram.com/adhik_creations/" aria-label="Facebook" target="_blank"><i class="fab fa-facebook-f"></i></a>
-                <a href="https://www.instagram.com/adhik_creations/" aria-label="Instagram" target="_blank"><i class="fab fa-instagram"></i></a>
-                <a href="https://www.instagram.com/adhik_creations/" aria-label="WhatsApp" target="_blank"><i class="fab fa-whatsapp"></i></a>
+                <a href="https://www.instagram.com/adhik_creations/" aria-label="Facebook" target="_blank" class="transition"><i class="fab fa-facebook-f"></i></a>
+                <a href="https://www.instagram.com/adhik_creations/" aria-label="Instagram" target="_blank" class="transition"><i class="fab fa-instagram"></i></a>
+                <a href="https://www.instagram.com/adhik_creations/" aria-label="WhatsApp" target="_blank" class="transition"><i class="fab fa-whatsapp"></i></a>
             </div>
         </div>
     </footer>

@@ -1,0 +1,153 @@
+/* Buttons */
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.75rem 1.5rem;
+    border-radius: var(--border-radius-sm);
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.btn-primary {
+    background: var(--primary);
+    color: var(--on-primary);
+}
+
+.btn-secondary {
+    background: var(--secondary);
+    color: var(--on-secondary);
+}
+
+/* Cards */
+.card {
+    background: var(--surface);
+    border-radius: var(--border-radius-lg);
+    overflow: hidden;
+    box-shadow: var(--elevation-1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--elevation-2);
+}
+
+/* Service Cards */
+.service-card {
+    composes: card;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.service-card img {
+    width: 100%;
+    aspect-ratio: 16/9;
+    object-fit: cover;
+}
+
+.service-card h3 {
+    font-size: var(--fs-md);
+    padding: 1rem;
+    margin: 0;
+}
+
+.service-card p {
+    padding: 0 1rem;
+    margin-bottom: 1rem;
+    color: var(--on-surface);
+    opacity: 0.87;
+}
+
+/* Carousel Component */
+.carousel {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 16/9;
+    overflow: hidden;
+    border-radius: var(--border-radius-md);
+    background: var(--surface);
+}
+
+.carousel-inner {
+    width: 100%;
+    height: 100%;
+}
+
+.carousel-control {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(0, 0, 0, 0.5);
+    color: white;
+    border: none;
+    padding: 1rem 0.5rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+/* Modal Component */
+.modal {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.9);
+    z-index: 1000;
+    display: none;
+}
+
+.modal.open {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Form Components */
+.form-group {
+    position: relative;
+    margin-bottom: 1.5rem;
+}
+
+.form-control {
+    width: 100%;
+    padding: 0.75rem 2.5rem;
+    border: 1px solid #ddd;
+    border-radius: var(--border-radius-md);
+    font-size: var(--fs-base);
+    transition: all 0.3s ease;
+}
+
+/* Alert Components */
+.alert {
+    padding: 1rem;
+    border-radius: var(--border-radius-sm);
+    margin-bottom: 1rem;
+}
+
+.alert-success {
+    background-color: var(--theme-success);
+    color: white;
+}
+
+.alert-error {
+    background-color: var(--error);
+    color: var(--on-error);
+}
+
+/* Social Links */
+.social-btn {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.75rem;
+    border-radius: var(--border-radius-md);
+    color: white;
+    transition: transform 0.2s ease;
+}
+
+.social-btn:hover {
+    transform: translateY(-2px);
+}
