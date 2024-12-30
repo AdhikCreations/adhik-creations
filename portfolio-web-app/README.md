@@ -43,11 +43,11 @@ To add images to a collection:
     folder: "my-collection",
     title: "My New Collection",
     media: [
-        { 
+        {
             type: 'image',
             src: "assets/images/portfolio/my-collection/image1.jpg"
         },
-        { 
+        {
             type: 'image',
             src: "assets/images/portfolio/my-collection/image2.jpg"
         }
@@ -68,7 +68,7 @@ To add videos to a collection:
     folder: "my-collection",
     title: "My New Collection",
     media: [
-        {   
+        {
             type: 'video',
             src: "assets/images/portfolio/my-collection/video1.mp4",
             thumbnail: "assets/images/portfolio/my-collection/video1-thumb.jpg"
@@ -86,16 +86,16 @@ Here's a complete example of adding a new collection with both images and videos
     folder: "mixed-collection",
     title: "Mixed Media Collection",
     media: [
-        { 
+        {
             type: 'image',
             src: "assets/images/portfolio/mixed-collection/image1.jpg"
         },
-        {   
-            type: 'video', 
+        {
+            type: 'video',
             src: "assets/images/portfolio/mixed-collection/video1.mp4",
             thumbnail: "assets/images/portfolio/mixed-collection/video1-thumb.jpg"
         },
-        { 
+        {
             type: 'image',
             src: "assets/images/portfolio/mixed-collection/image2.jpg"
         }
@@ -258,82 +258,3 @@ git stash pop
 ```
 
 Remember to always create a backup of your work before using any destructive Git commands.
-
-## Deployment
-
-This project is deployed using GitHub Pages. Here's how to deploy or update the deployment:
-
-### First-time Setup
-
-1. Create a GitHub repository:
-```bash
-git init
-git add .
-git commit -m "Initial commit"
-git remote add origin git@github.com:username/portfolio-web-app.git
-git push -u origin main
-```
-
-2. Configure GitHub Pages:
-   - Go to your repository on GitHub
-   - Navigate to Settings → Pages
-   - Under "Source", select "main" branch
-   - Click "Save"
-
-### Updating the Deployment
-
-The site automatically deploys when changes are pushed to the main branch. To update:
-
-1. Make sure your changes are committed:
-```bash
-git add .
-git commit -m "Update portfolio items"
-```
-
-2. Push to GitHub:
-```bash
-git push origin main
-```
-
-3. Wait for GitHub Actions to complete:
-   - Go to your repository → Actions tab
-   - Watch for the deployment workflow to complete
-   - Your changes will be live in a few minutes
-
-### Custom Domain (Optional)
-
-To use a custom domain:
-
-1. Add your domain in repository Settings → Pages
-2. Create required DNS records:
-   - Type: A
-   - Name: @
-   - Value: 185.199.108.153
-   - Value: 185.199.109.153
-   - Value: 185.199.110.153
-   - Value: 185.199.111.153
-
-3. Add CNAME file to your repository:
-```bash
-echo "www.yourdomain.com" > CNAME
-git add CNAME
-git commit -m "Add CNAME for custom domain"
-git push origin main
-```
-
-### Troubleshooting Deployment
-
-1. If pages don't update:
-   - Check if GitHub Actions workflow completed successfully
-   - Clear browser cache
-   - Wait 5-10 minutes for changes to propagate
-
-2. If images don't load:
-   - Verify image paths are relative to repository root
-   - Check file permissions
-   - Ensure filenames match exactly (case-sensitive)
-
-3. For 404 errors:
-   - Verify all links use relative paths
-   - Check if files exist in the repository
-   - Ensure repository visibility is public

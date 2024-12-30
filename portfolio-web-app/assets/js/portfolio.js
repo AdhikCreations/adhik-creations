@@ -372,6 +372,16 @@ class PortfolioCarousel {
     }
 }
 
+// Service mapping for portfolio items
+const serviceMapping = {
+    "kondapalli": "Décor Rentals",
+    "krishna": "Décor Rentals",
+    "crafted": "Event Management",
+    "nature": "Event Management",
+    "jutebag": "Return Gifts",
+    "ganesh": "Return Gifts"
+};
+
 // Updated portfolio data structure with videos
 const portfolioData = {
     portfolios: [
@@ -423,7 +433,7 @@ const portfolioData = {
             folder: "jutebag",
             title: "Jute Bag Collection",
             media: [
-                {   type: 'video', 
+                {   type: 'video',
                     src: "assets/images/portfolio/jutebag/video1.mp4",
                     thumbnail: "assets/images/portfolio/jutebag/video1-thumb.jpg"
                 }
@@ -434,11 +444,11 @@ const portfolioData = {
             folder: "ganesh",
             title: "Lord Ganesha Collection",
             media: [
-                {   type: 'video', 
+                {   type: 'video',
                     src: "assets/images/portfolio/ganesh/video1.mp4",
                     thumbnail: "assets/images/portfolio/ganesh/video1-thumb.jpg"
                 },
-                {   type: 'video', 
+                {   type: 'video',
                     src: "assets/images/portfolio/ganesh/video2.mp4",
                     thumbnail: "assets/images/portfolio/ganesh/video2-thumb.jpg"
                 },
@@ -449,28 +459,56 @@ const portfolioData = {
     ]
 };
 
-async function loadPortfolios() {
-    try {
-        const portfolioGrid = document.getElementById('portfolio-grid');
+function getQueryParam(param) {
+    const urlParams = new URLSearchParams(window.location.search);
+    return urlParams.get(param);
+}
+
+function filterPortfolios(service) {
+    const portfolioGrid = document.getElementById('portfolio-grid');
+    portfolioGrid.innerHTML = ''; // Clear current items
+    
+    portfolioData.portfolios.forEach((portfolio, index) => {
+        // Skip if service filter is active and doesn't match
+        if (service !== 'all' && serviceMapping[portfolio.folder] !== service) {
+            return;
+        }
         
-        portfolioData.portfolios.forEach((portfolio, index) => {
-            const portfolioItem = document.createElement('div');
-            portfolioItem.className = 'portfolio-item';
-            portfolioItem.id = `portfolio-${index}`;
-            
-            portfolioItem.innerHTML = `
-                <h3>${portfolio.title}</h3>
-                <div id="carousel-${index}"></div>
-                <p>${portfolio.title}</p>
-            `;
-            
-            portfolioGrid.appendChild(portfolioItem);
-            
-            const carousel = new PortfolioCarousel(portfolio.media, `portfolio-${index}`);
-            const carouselContainer = document.getElementById(`carousel-${index}`);
-            carouselContainer.innerHTML = carousel.createCarousel();
-            carousel.attachListeners();
-        });
+        const portfolioItem = document.createElement('div');
+        portfolioItem.className = 'portfolio-item';
+        portfolioItem.id = `portfolio-${index}`;
+        
+        portfolioItem.innerHTML = `
+            <h3>${portfolio.title}</h3>
+            <div id="carousel-${index}"></div>
+            <p>${portfolio.title}</p>
+        `;
+        
+        portfolioGrid.appendChild(portfolioItem);
+        
+        const carousel = new PortfolioCarousel(portfolio.media, `portfolio-${index}`);
+        const carouselContainer = document.getElementById(`carousel-${index}`);
+        carouselContainer.innerHTML = carousel.createCarousel();
+        carousel.attachListeners();
+    });
+}
+function loadPortfolios() {
+    // Get service from URL parameter
+    const urlService = getQueryParam('service') || 'all';
+    
+    // Set the filter dropdown value
+    const serviceFilter = document.getElementById('service-filter');
+    serviceFilter.value = urlService;
+    
+    // Add event listener for filter
+    const filter = document.getElementById('service-filter');
+    filter.addEventListener('change', (e) => {
+        filterPortfolios(e.target.value);
+    });
+    
+    try {
+        // Apply filter based on URL parameter
+        filterPortfolios(urlService);
     } catch (error) {
         console.error('Error loading portfolios:', error);
         const portfolioGrid = document.getElementById('portfolio-grid');

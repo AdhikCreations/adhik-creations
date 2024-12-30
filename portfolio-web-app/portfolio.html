@@ -30,6 +30,7 @@
                     <li><a href="testimonials.html">Testimonials</a></li>
                     <li><a href="contact.html">Contact</a></li>
                     <li><a href="about.html">About</a></li>
+                    <li><a href="instagram.html">Instagram</a></li>
                 </ul>
             </nav>
         </div>
@@ -39,6 +40,15 @@
         <section class="portfolio" aria-label="Portfolio Gallery">
             <div class="container">
                 <h2 class="section-title">Our Portfolio</h2>
+                <div class="portfolio-filter">
+                    <label for="service-filter">Filter by Service:</label>
+                    <select id="service-filter">
+                        <option value="all">All Services</option>
+                        <option value="Décor Rentals">Décor Rentals</option>
+                        <option value="Event Management">Event Management</option>
+                        <option value="Return Gifts">Return Gifts</option>
+                    </select>
+                </div>
                 <div class="portfolio-grid" id="portfolio-grid"></div>
                     <!-- Dynamic content will be inserted here -->
                 </div>

@@ -585,6 +585,36 @@ img {
     opacity: 0.9;
 }
 
+/* Portfolio Filter Styles */
+.portfolio-filter {
+    margin: 2rem 0;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    justify-content: center;
+}
+
+.portfolio-filter label {
+    font-size: var(--fs-md);
+    font-weight: 500;
+}
+
+.portfolio-filter select {
+    padding: 0.5rem 1rem;
+    border-radius: var(--border-radius-sm);
+    border: 1px solid var(--primary);
+    font-size: var(--fs-base);
+    background-color: var(--surface);
+    color: var(--on-surface);
+    cursor: pointer;
+    transition: all var(--transition-base);
+}
+
+.portfolio-filter select:hover {
+    border-color: var(--primary-variant);
+    box-shadow: var(--elevation-1);
+}
+
 /* Portfolio Carousel Styles */
 .carousel {
     position: relative;
